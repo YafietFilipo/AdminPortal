@@ -7,11 +7,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UserAccountComponent } from './user-account/user-account.component';
+import { UserService } from './user.service';
+import { AppointmentComponent } from './appointment/appointment.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    UserAccountComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [LoginService],
+  providers: [LoginService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

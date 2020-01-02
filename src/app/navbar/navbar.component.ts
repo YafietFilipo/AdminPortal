@@ -8,10 +8,10 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  loggedIn: boolean;
+  private loggedIn: boolean;
 
 	constructor(private loginService: LoginService, private router : Router) {
-		if(localStorage.getItem('PortalAdminHasLoggedIn') == '') {
+		if(localStorage.getItem('PortalAdminHasLoggedIn') == '' || localStorage.getItem('PortalAdminHasLoggedIn') == null) {
 			this.loggedIn = false;
 		} else {
 			this.loggedIn = true;
@@ -19,18 +19,17 @@ export class NavbarComponent implements OnInit {
 	}
 
 	logout(){
-
 		this.loginService.logout().subscribe(
 			res => {
-				this.loggedIn = false;
 				localStorage.setItem('PortalAdminHasLoggedIn', '');
+				this.loggedIn = false;
+				//ocation.reload();
+				this.router.navigate(['/login']);
 			},
 			err => console.log(err)
 			);
-			location.reload();
-			this.router.navigate(['/login']);
-		
-		
+		// location.reload();
+		// this.router.navigate(['/login']);
 	}
 
 	getDisplay() {
